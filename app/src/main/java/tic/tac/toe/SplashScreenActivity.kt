@@ -15,7 +15,7 @@ class SplashScreenActivity : AppCompatActivity() {
         //hides the top bar that says "Three in a row"
         supportActionBar?.hide()
 
-        //after 3 seconds of splash screen action, switch from this splash screen activity back to
+        //after 3 seconds of splash screen action, switch from this splash screen activity back to the main activity
        Handler(Looper.getMainLooper()).postDelayed({
            val intent = Intent (this@SplashScreenActivity, MainActivity::class.java)
            startActivity(intent)
