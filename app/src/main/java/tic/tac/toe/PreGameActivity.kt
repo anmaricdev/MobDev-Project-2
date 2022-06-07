@@ -15,8 +15,8 @@ class PreGameActivity : AppCompatActivity() {
         //hides the top bar that says "Three in a row"
         supportActionBar?.hide()
 
-        val startgame = findViewById<Button>(R.id.startGameButton)
-        startgame.setOnClickListener {
+        val startGameButton = findViewById<Button>(R.id.startGameButton)
+        startGameButton.setOnClickListener {
             val intent = Intent(this@PreGameActivity, PlayerNameActivity::class.java)
             startActivity(intent)
             finish() //prevents the app returning to this screen if e.g. back button is pressed after switching to main app
