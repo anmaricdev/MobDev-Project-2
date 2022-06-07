@@ -17,7 +17,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         //after 3 seconds of splash screen action, switch from this splash screen activity back to the main activity
        Handler(Looper.getMainLooper()).postDelayed({
-           val intent = Intent (this@SplashScreenActivity, MainActivity::class.java)
+           val intent = Intent (this@SplashScreenActivity, PreGameActivity::class.java)
            startActivity(intent)
            finish() //prevents the app returning to this screen if e.g. back button is pressed after switching to main app
         }, 3000)

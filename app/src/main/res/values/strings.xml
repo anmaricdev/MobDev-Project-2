@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Three in a row</string>
+    <string name="start_button">Start a game</string>
+    <string name="NG_button">Start a new game</string>
+    <string name="finish_button">Finish</string>
+    <string name="enter_names">Enter your name below</string>
+    <string name="winner">... to be added here ...</string>
+    <string name="player1">Enter name here...</string>
+    <string name="player2">Enter name here...</string>
+    <string name="p1WinStreak">... to be added here ...</string>
+    <string name="p2WinStreak">... to be added here ...</string>
+    <string name="player1_heading">Player 1 name:</string>
+    <string name="player2_heading">Player 2 name:</string>
+
+
 </resources>
