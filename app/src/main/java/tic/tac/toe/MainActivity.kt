@@ -1,5 +1,6 @@
 package tic.tac.toe
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -13,11 +14,11 @@ class MainActivity : AppCompatActivity() {
 
     //private lateinit var taskView: TextView
 
-    private var p1WinStreak: TextView = findViewById(R.id.PlayerOneWinStreak)
-    private var p2WinStreak: TextView = findViewById(R.id.PlayerTwoWinStreak)
-    private var winnerDisplay: TextView = findViewById(R.id.WinnerDisplay)
-    private val buttonNG: Button = findViewById(R.id.Button_NewGame)
-    private val buttons = arrayListOf<Int>(9)
+    private lateinit var p1WinStreak: TextView
+    private lateinit var p2WinStreak: TextView
+    private lateinit var winnerDisplay: TextView
+    private lateinit var buttonNG: Button
+    //private lateinit val buttons:  arrayListOf<Int>(9)
 
     //Counter for the win streak of player1 and player2
     var p1counter = 0
@@ -39,8 +40,6 @@ class MainActivity : AppCompatActivity() {
     val gameSate = arrayListOf<Int>(2, 2, 2, 2, 2, 2, 2, 2, 2)
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -48,5 +47,22 @@ class MainActivity : AppCompatActivity() {
         //hides the top bar that says "Three in a row"
         //supportActionBar?.hide()
 
+        p1WinStreak = findViewById(R.id.PlayerOneWinStreak)
+        p2WinStreak = findViewById(R.id.PlayerTwoWinStreak)
+        winnerDisplay = findViewById(R.id.WinnerDisplay)
+        buttonNG = findViewById(R.id.Button_NewGame)
+
+        /*val newGameButtonOnClick = findViewById<Button>(R.id.Button_NewGame)
+        newGameButtonOnClick.setOnClickListener {
+            val intent = Intent(this@MainActivity, PlayerNameActivity::class.java)
+            startActivity(intent)
+            finish() //prevents the app returning to this screen if e.g. back button is pressed after switching to main app
+        }*/
+        val homeButtonOnClick = findViewById<Button>(R.id.Button_Home)
+        homeButtonOnClick.setOnClickListener {
+            val intent = Intent(this@MainActivity, PreGameActivity::class.java)
+            startActivity(intent)
+            finish() //prevents the app returning to this screen if e.g. back button is pressed after switching to main app
+        }
     }
 }

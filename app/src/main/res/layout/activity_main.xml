@@ -178,23 +178,38 @@
         app:layout_constraintTop_toBottomOf="@id/Button_MR"
         app:layout_constraintLeft_toLeftOf="@id/Button_MR"
         />
-
+    
     <Button
         android:id="@+id/Button_NewGame"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/textSize_PlayerInput"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_salmon"
         android:text="@string/NG_button"
+        android:textColor="@color/white_main"
         android:textSize="@dimen/textSize_Button"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Button_DM"
+        app:layout_constraintVertical_bias="0.207" />
+
+    <Button
+        android:id="@+id/Button_Home"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:background="@drawable/button_purple"
+        android:text="@string/home_button"
         android:textColor="@color/white_main"
-        android:background="@drawable/button_layout"
-        app:layout_constraintTop_toBottomOf="@+id/Button_DL"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="20dp"
-        />
-
-
+        android:textSize="@dimen/textSize_Button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Button_NewGame"
+        app:layout_constraintVertical_bias="0.3" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

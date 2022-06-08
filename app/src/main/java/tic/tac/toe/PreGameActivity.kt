@@ -1,11 +1,13 @@
 package tic.tac.toe
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import kotlin.system.exitProcess
 
 class PreGameActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,11 +17,27 @@ class PreGameActivity : AppCompatActivity() {
         //hides the top bar that says "Three in a row"
         supportActionBar?.hide()
 
-        val startGameButton = findViewById<Button>(R.id.startGameButton)
-        startGameButton.setOnClickListener {
+        val warning = AlertDialog.Builder(this@PreGameActivity)
+            warning.setTitle("Warning!")
+            warning.setMessage("Are you sure you want to exit the app?")
+            warning.setCancelable(false)
+            warning.setPositiveButton(android.R.string.yes){warning, which ->
+                finish()
+                exitProcess(0)
+            }
+            warning.setNegativeButton(android.R.string.no){warning, which ->
+            }
+
+
+        val startGameButtonClick = findViewById<Button>(R.id.startGameButton)
+        startGameButtonClick.setOnClickListener {
             val intent = Intent(this@PreGameActivity, PlayerNameActivity::class.java)
             startActivity(intent)
             finish() //prevents the app returning to this screen if e.g. back button is pressed after switching to main app
+        }
+        val exitGameButtonClick = findViewById<Button>(R.id.exitGameButton)
+        exitGameButtonClick.setOnClickListener {
+            warning.show()
         }
     }
 }
