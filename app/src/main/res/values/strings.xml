@@ -13,6 +13,5 @@
     <string name="p2WinStreak">... to be added here ...</string>
     <string name="player1_heading">Player 1 name:</string>
     <string name="player2_heading">Player 2 name:</string>
-
-
+    <string name="error_message_names">Enter names please!</string>
 </resources>

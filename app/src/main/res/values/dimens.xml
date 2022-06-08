@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="textSize_Button">18sp</dimen>
-    <dimen name="textSize_PlayerName">20sp</dimen>
+    <dimen name="textSize_PlayerNameIngame">30sp</dimen>
+    <dimen name="textSize_PlayerNamePregame">20sp</dimen>
     <dimen name="textSize_WinStreak">25sp</dimen>
     <dimen name="textSize_Winner">30sp</dimen>
     <dimen name="textSize_PlayerInput">60sp</dimen>
     <dimen name="textSize_EnterNames">30sp</dimen>
     <dimen name="textSize_GameInput">80sp</dimen>
-
+    <dimen name="textSize_error_message">35sp</dimen>
 </resources>

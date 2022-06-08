@@ -21,6 +21,7 @@ class PreGameActivity : AppCompatActivity() {
             warning.setTitle("Warning!")
             warning.setMessage("Are you sure you want to exit the app?")
             warning.setCancelable(false)
+            warning.setIcon(R.drawable.ic_warning_symbol)
             warning.setPositiveButton(android.R.string.yes){warning, which ->
                 finish()
                 exitProcess(0)

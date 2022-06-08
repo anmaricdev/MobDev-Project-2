@@ -3,6 +3,7 @@ package tic.tac.toe
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import java.util.*
@@ -18,6 +19,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var p2WinStreak: TextView
     private lateinit var winnerDisplay: TextView
     private lateinit var buttonNG: Button
+    private lateinit var player1Name: TextView
+    private lateinit var player2Name: TextView
     //private lateinit val buttons:  arrayListOf<Int>(9)
 
     //Counter for the win streak of player1 and player2
@@ -47,10 +50,25 @@ class MainActivity : AppCompatActivity() {
         //hides the top bar that says "Three in a row"
         //supportActionBar?.hide()
 
+        //connecting to UI elements
         p1WinStreak = findViewById(R.id.PlayerOneWinStreak)
         p2WinStreak = findViewById(R.id.PlayerTwoWinStreak)
         winnerDisplay = findViewById(R.id.WinnerDisplay)
         buttonNG = findViewById(R.id.Button_NewGame)
+        player1Name = findViewById(R.id.PlayerOne)
+        player2Name = findViewById(R.id.PlayerTwo)
+
+        //assigning the entered names from the PlayerNameActivity in here to be properly display in the UI
+        var player1: String? = intent.getStringExtra("Player1_NAME").toString()
+        var player2: String? = intent.getStringExtra("Player2_NAME").toString()
+
+        player1Name.setText(player1)
+        player2Name.setText(player2)
+
+
+
+        Log.v(TAG, "Player 1 name: " + player1)
+        Log.v(TAG, "Player 2 name: " + player2Name)
 
         /*val newGameButtonOnClick = findViewById<Button>(R.id.Button_NewGame)
         newGameButtonOnClick.setOnClickListener {

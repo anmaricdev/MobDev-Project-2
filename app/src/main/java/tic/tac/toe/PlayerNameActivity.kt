@@ -3,13 +3,22 @@ package tic.tac.toe
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 
 class PlayerNameActivity : AppCompatActivity() {
 
+    private val TAG = "NAMES"
+
     private lateinit var player1: EditText
     private lateinit var player2: EditText
+    private lateinit var errorMessage: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,22 +30,34 @@ class PlayerNameActivity : AppCompatActivity() {
         //connecting to UI elements
         player1 = findViewById(R.id.editPlayerOneName)
         player2 = findViewById(R.id.editPlayerTwoName)
+        errorMessage = findViewById(R.id.error_message)
+
+        val warning = AlertDialog.Builder(this@PlayerNameActivity)
+        warning.setTitle("NAMES MISSING!")
+        warning.setMessage("Please enter the names of both players!")
+        warning.setCancelable(true)
+        warning.setIcon(R.drawable.ic_warning_symbol)
 
         val finishButtonOnClick = findViewById<Button>(R.id.finishButton)
         finishButtonOnClick.setOnClickListener {
             val player1name: String = player1.text.toString()
             val player2name: String = player2.text.toString()
 
-            //put both names into a bundle so they can be passed together to the next activity
-            val extras = Bundle()
-            extras.putString("PLAYER1_NAME", player1name)
-            extras.putString("PLAYER2_NAME", player2name)
+            val isNullOrEmpty = player1name.isNullOrEmpty()
+            val isNullOrEmpty2 = player2name.isNullOrEmpty()
 
-            //sending the names to the MainActivity so they can be used for display purposes
-            val intent = Intent(this@PlayerNameActivity, MainActivity::class.java)
-            intent.putExtra("Player_NAMES", extras)
-            startActivity(intent)
-            finish()
+            if (isNullOrEmpty != true  && isNullOrEmpty2 != true ){
+                val intent = Intent(this@PlayerNameActivity, MainActivity::class.java)
+                intent.putExtra("Player1_NAME", player1name)
+                intent.putExtra("Player2_NAME", player2name)
+                Log.v(TAG, "Player 1NAMENAME: " + player1name)
+                Log.v(TAG, "Player 2NAMENAME: " + player2name)
+                startActivity(intent)
+                finish()
+            }else {
+                warning.show()
+                //errorMessage.setVisibility(View.VISIBLE)
+            }
         }
     }
 }
