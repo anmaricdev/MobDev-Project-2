@@ -12,14 +12,14 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        //hides the top bar that says "Three in a row"
+        // hides the top bar that says "Three in a row"
         supportActionBar?.hide()
 
-        //after 3 seconds of splash screen action, switch from this splash screen activity back to the main activity
+        // after 3 seconds of splash screen visibility, switches from this SplashScreenActivity back to the MainActivity
        Handler(Looper.getMainLooper()).postDelayed({
            val intent = Intent (this@SplashScreenActivity, PreGameActivity::class.java)
            startActivity(intent)
-           finish() //prevents the app returning to this screen if e.g. back button is pressed after switching to main app
+           finish() // prevents the app returning to this screen if e.g. back button is pressed after switching to main app
         }, 3000)
 
     }

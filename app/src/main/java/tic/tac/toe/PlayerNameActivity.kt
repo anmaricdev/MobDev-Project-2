@@ -24,14 +24,15 @@ class PlayerNameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_player_name)
 
-        //hides the top bar that says "Three in a row"
+        // hides the top bar that says "Three in a row"
         supportActionBar?.hide()
 
-        //connecting to UI elements
+        // connecting to UI elements
         player1 = findViewById(R.id.editPlayerOneName)
         player2 = findViewById(R.id.editPlayerTwoName)
         errorMessage = findViewById(R.id.error_message)
 
+        // creating a warning pop up in case names are missing
         val warning = AlertDialog.Builder(this@PlayerNameActivity)
         warning.setTitle("NAMES MISSING!")
         warning.setMessage("Please enter the names of both players!")
@@ -46,6 +47,9 @@ class PlayerNameActivity : AppCompatActivity() {
             val isNullOrEmpty = player1name.isNullOrEmpty()
             val isNullOrEmpty2 = player2name.isNullOrEmpty()
 
+            // checks if the name fields are null or empty, if true => shows a warning pop up (above)
+            // if the names are correctly entered (case: false), continues to the MainActivity and passes
+            // the names in their corresponding TextView variable
             if (isNullOrEmpty != true  && isNullOrEmpty2 != true ){
                 val intent = Intent(this@PlayerNameActivity, MainActivity::class.java)
                 intent.putExtra("Player1_NAME", player1name)
