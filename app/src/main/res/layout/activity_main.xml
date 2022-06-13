@@ -15,6 +15,8 @@
         android:text="@string/player1"
         android:textStyle="bold"
         android:textSize="@dimen/textSize_PlayerNameIngame"
+        android:textAlignment="center"
+        android:textColor="@color/white_main"
         app:layout_constraintBaseline_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="40dp"
@@ -27,6 +29,8 @@
         android:text="@string/player2"
         android:textStyle="bold"
         android:textSize="@dimen/textSize_PlayerNameIngame"
+        android:textAlignment="center"
+        android:textColor="@color/orange_main"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginRight="40dp"
@@ -37,22 +41,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/p1WinStreak"
+        android:textAlignment="center"
         android:textSize="@dimen/textSize_WinStreak"
-        app:layout_constraintTop_toBottomOf="@+id/PlayerOne"
-        app:layout_constraintLeft_toLeftOf="@+id/PlayerOne"
-        android:layout_marginLeft="40dp"
-        />
+        app:layout_constraintEnd_toEndOf="@+id/PlayerOne"
+        app:layout_constraintStart_toStartOf="@+id/PlayerOne"
+        app:layout_constraintTop_toBottomOf="@+id/PlayerOne" />
 
     <TextView
         android:id="@+id/PlayerTwoWinStreak"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/p2WinStreak"
+        android:textAlignment="center"
         android:textSize="@dimen/textSize_WinStreak"
-        app:layout_constraintTop_toBottomOf="@+id/PlayerTwo"
+        app:layout_constraintEnd_toEndOf="@+id/PlayerTwo"
         app:layout_constraintRight_toRightOf="@+id/PlayerTwo"
-        android:layout_marginRight="40dp"
-        />
+        app:layout_constraintStart_toStartOf="@+id/PlayerTwo"
+        app:layout_constraintTop_toBottomOf="@+id/PlayerTwo" />
 
     <TextView
         android:id="@+id/WinnerDisplay"
@@ -68,12 +73,11 @@
         />
 
     <Button
-        android:id="@+id/Button_TL"
+        android:id="@+id/Button_0"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
         app:layout_constraintTop_toBottomOf="@id/WinnerDisplay"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -83,102 +87,94 @@
         />
 
     <Button
-        android:id="@+id/Button_TM"
+        android:id="@+id/Button_1"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toTopOf="@id/Button_TL"
-        app:layout_constraintLeft_toRightOf="@id/Button_TL"
+        app:layout_constraintTop_toTopOf="@id/Button_0"
+        app:layout_constraintLeft_toRightOf="@id/Button_0"
         android:layout_marginRight="5dp"
         android:layout_marginLeft="7dp"
         />
 
     <Button
-        android:id="@+id/Button_TR"
+        android:id="@+id/Button_2"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toTopOf="@id/Button_TM"
-        app:layout_constraintLeft_toRightOf="@id/Button_TM"
+        app:layout_constraintTop_toTopOf="@id/Button_1"
+        app:layout_constraintLeft_toRightOf="@id/Button_1"
         android:layout_marginLeft="7dp"
         />
 
     <Button
-        android:id="@+id/Button_ML"
+        android:id="@+id/Button_3"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toBottomOf="@id/Button_TL"
-        app:layout_constraintLeft_toLeftOf="@id/Button_TL"
+        app:layout_constraintTop_toBottomOf="@id/Button_0"
+        app:layout_constraintLeft_toLeftOf="@id/Button_0"
         />
 
     <Button
-        android:id="@+id/Button_MM"
+        android:id="@+id/Button_4"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toBottomOf="@id/Button_TM"
-        app:layout_constraintLeft_toLeftOf="@id/Button_TM"
+        app:layout_constraintTop_toBottomOf="@id/Button_1"
+        app:layout_constraintLeft_toLeftOf="@id/Button_1"
         />
 
     <Button
-        android:id="@+id/Button_MR"
+        android:id="@+id/Button_5"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toBottomOf="@id/Button_TR"
-        app:layout_constraintLeft_toLeftOf="@id/Button_TR"
+        app:layout_constraintTop_toBottomOf="@id/Button_2"
+        app:layout_constraintLeft_toLeftOf="@id/Button_2"
         />
 
     <Button
-        android:id="@+id/Button_DL"
+        android:id="@+id/Button_6"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toBottomOf="@id/Button_ML"
-        app:layout_constraintLeft_toLeftOf="@id/Button_ML"
+        app:layout_constraintTop_toBottomOf="@id/Button_3"
+        app:layout_constraintLeft_toLeftOf="@id/Button_3"
         />
 
     <Button
-        android:id="@+id/Button_DM"
+        android:id="@+id/Button_7"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toBottomOf="@id/Button_MM"
-        app:layout_constraintLeft_toLeftOf="@id/Button_MM"
+        app:layout_constraintTop_toBottomOf="@id/Button_4"
+        app:layout_constraintLeft_toLeftOf="@id/Button_4"
         />
 
     <Button
-        android:id="@+id/Button_DR"
+        android:id="@+id/Button_8"
         android:layout_width="130dp"
         android:layout_height="130dp"
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
-        android:textColor="@color/orange_main"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toBottomOf="@id/Button_MR"
-        app:layout_constraintLeft_toLeftOf="@id/Button_MR"
+        app:layout_constraintTop_toBottomOf="@id/Button_5"
+        app:layout_constraintLeft_toLeftOf="@id/Button_5"
         />
 
     <Button
@@ -187,14 +183,13 @@
         android:layout_height="50dp"
         android:background="@drawable/button_salmon"
         android:text="@string/NG_button"
-        android:textColor="@color/white_main"
         android:textSize="@dimen/textSize_Button"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Button_DM"
+        app:layout_constraintTop_toBottomOf="@+id/Button_7"
         app:layout_constraintVertical_bias="0.207" />
 
     <Button
