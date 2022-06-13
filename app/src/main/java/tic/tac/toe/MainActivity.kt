@@ -310,6 +310,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }else{
             hasTurn = !hasTurn
         }
+
+        // changes the display depending on the state of the game (e.g. who is winning and if it's a draw)
         if (p1counter > p2counter){
             winnerDisplay.text = player1Name.text.toString() + " is winning!"
         } else if (p2counter > p1counter){
@@ -319,7 +321,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    fun checkWinner(): Boolean {
+    // after each click compares current game state with the winning preconditions.
+    // If a winner is found, returns a boolean for further functions above (e.g. notifications, starting a new game)
+    private fun checkWinner(): Boolean {
         var isWinner = false
 
         for(winningPosition: IntArray in winningConditions){
@@ -331,12 +335,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return isWinner
         }
 
-    fun updatePlayerWinstreak(){
+    private fun updatePlayerWinstreak(){
         p1WinStreak.text = p1counter.toString()
         p2WinStreak.text = p2counter.toString()
     }
 
-    fun playAgain(){
+    private fun playAgain(){
         roundCounter = 0
         hasTurn = true
 
