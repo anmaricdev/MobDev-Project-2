@@ -23,7 +23,9 @@ class PreGameActivity : AppCompatActivity() {
             warning.setCancelable(false)
             warning.setIcon(R.drawable.ic_warning_symbol)
             warning.setPositiveButton(android.R.string.yes){warning, which ->
-                finish()
+                //destroys the app completely after pressing yes
+                // https://stackoverflow.com/questions/6330200/how-to-quit-android-application-programmatically
+                finishAndRemoveTask()
                 exitProcess(0)
             }
             warning.setNegativeButton(android.R.string.no){warning, which ->
@@ -35,7 +37,6 @@ class PreGameActivity : AppCompatActivity() {
         startGameButtonClick.setOnClickListener {
             val intent = Intent(this@PreGameActivity, PlayerNameActivity::class.java)
             startActivity(intent)
-            finish() //prevents the app returning to this screen if e.g. back button is pressed after switching to main app
         }
         // If the exit app button is pressed, the app sends a pop up that gives the user the option to
         // proceed to exit the app or, in case of a misinput, cancel the exit process and return to

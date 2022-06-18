@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PlayerNameActivity"
-    android:background="@color/pink_main">
+    android:background="@color/pink_main"
+    tools:context=".PlayerNameActivity">
 
     <TextView
         android:id="@+id/enterNames"

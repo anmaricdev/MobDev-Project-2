@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -42,7 +43,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     var hasTurn = true
 
     // array that consists of all the possible positions to place an X or O (buttons of the UI)
-    private val buttons: Array<Button> = arrayOf()
+
+   // private var buttons: Array<Button> = arrayOf()
 
     /* KEEPING TRACK OF THE GAME PROGRESS/STATE:
     * If player one owns a field => player1 = 0
@@ -61,16 +63,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                                     // Diagonal winning conditions
                                     intArrayOf(0, 4, 8), intArrayOf(2, 4, 6))
 
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         // hides the top bar that says "Three in a row"
         // supportActionBar?.hide()
-
         // connecting to UI elements
         p1WinStreak = findViewById(R.id.PlayerOneWinStreak)
         p2WinStreak = findViewById(R.id.PlayerTwoWinStreak)
@@ -88,6 +86,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button_7 = findViewById(R.id.Button_7)
         button_8 = findViewById(R.id.Button_8)
 
+        // initializing the button array
+        /*for (i in buttons.indices){
+            val buttonID: String = "Button_" + i
+            val resourceID: Int = resources.getIdentifier(buttonID, "id", packageName)
+            buttons[i] = findViewById(resourceID)
+            buttons[i].setOnClickListener(this)
+            Log.v(TAG, "Button: " + buttons[i])
+        }*/
+
         // checks if button is clicked
         button_0.setOnClickListener(this)
         button_1.setOnClickListener(this)
@@ -100,24 +107,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button_8.setOnClickListener(this)
 
         // assigning the entered names from the PlayerNameActivity in here to be properly display in the UI
-        val player1: String? = intent.getStringExtra("Player1_NAME").toString()
-        val player2: String? = intent.getStringExtra("Player2_NAME").toString()
+        val player1: String = intent.getStringExtra("Player1_NAME").toString()
+        val player2: String = intent.getStringExtra("Player2_NAME").toString()
 
         player1Name.text = player1
         player2Name.text = player2
-
-        // initializing the button array
-       /* for (i in buttons.indices){
-            val buttonID: String = "Button_" + i
-            val resourceID: Int = resources.getIdentifier(buttonID, "id", packageName)
-            buttons[i] = findViewById(resourceID)
-            buttons[i].setOnClickListener(this)
-            Log.v(TAG, "Button: " + buttons[i])
-        }*/
-
-        /*if(hasTurn){
-            buttons.
-        }*/
 
         val newGameButtonOnClick = findViewById<Button>(R.id.Button_NewGame)
         newGameButtonOnClick.setOnClickListener {
@@ -135,24 +129,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    // TODO: Add function that checks if field has been marked, if so, make unchangeable
     override fun onClick(view: View) {
-        // if a button has been assigned by a player with their mark, it must not be changed by the other player
-        // if it's not empty, it will go out the func (return)
-           /* if (!(button_0.text.toString().equals("")) ||
-                !(button_1.text.toString().equals("")) ||
-                !(button_2.text.toString().equals("")) ||
-                !(button_3.text.toString().equals("")) ||
-                !(button_4.text.toString().equals("")) ||
-                !(button_5.text.toString().equals("")) ||
-                !(button_6.text.toString().equals("")) ||
-                !(button_7.text.toString().equals("")) ||
-                !(button_8.text.toString().equals(""))) {
-                return
-            }*/
-
         // takes id from corresponding button (e.g. Button_1, Button_2 etc)
         val buttonID = view.resources.getResourceEntryName(view.id)
+
         // cuts the string in front of the last char and only takes the last char and saves it in gameStatus var (e.g from Button_1 to 1 -> cuts the Button_1)
         // this is important to change the gameState above (keep track on which player assigned what field to their mark in their turn)
         // e.g if p1 chooses the second row, 2nd position (middle field), it will change the corresponding field in the array to mark that it's not empty(2) anymore
@@ -164,116 +144,190 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if (hasTurn) {
             when (view.id) {
                 R.id.Button_0 -> {
-                    button_0.text = "X"
-                    button_0.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    // if a button has been assigned by a player with their mark, it must not be changed by the other player
+                    // if it's not empty, it will go out the onClick func (return)
+                    if (!(button_0.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_0.text = "X"
+                        button_0.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_1 -> {
-                    button_1.text = "X"
-                    button_1.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_1.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_1.text = "X"
+                        button_1.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_2 -> {
-                    button_2.text = "X"
-                    button_2.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_2.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_2.text = "X"
+                        button_2.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_3 -> {
-                    button_3.text = "X"
-                    button_3.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_3.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_3.text = "X"
+                        button_3.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_4 -> {
-                    button_4.text = "X"
-                    button_4.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_4.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_4.text = "X"
+                        button_4.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_5 -> {
-                    button_5.text = "X"
-                    button_5.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_5.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_5.text = "X"
+                        button_5.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_6 -> {
-                    button_6.text = "X"
-                    button_6.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_6.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_6.text = "X"
+                        button_6.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_7 -> {
-                    button_7.text = "X"
-                    button_7.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_7.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_7.text = "X"
+                        button_7.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
                 R.id.Button_8 -> {
-                    button_8.text = "X"
-                    button_8.setTextColor(Color.parseColor("#FF5858"))
-                    gameState[gameStatus] = 0
-                    roundCounter++
+                    if (!(button_8.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_8.text = "X"
+                        button_8.setTextColor(Color.parseColor("#EBFFFB"))
+                        gameState[gameStatus] = 0
+                        roundCounter++
+                    }
                 }
             }
             // Player2 turn
         } else {
             when (view.id) {
                 R.id.Button_0-> {
-                    button_0.text = "O"
-                    button_0.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_0.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_0.text = "O"
+                        button_0.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_1 -> {
-                    button_1.text = "O"
-                    button_1.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_1.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_1.text = "O"
+                        button_1.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_2 -> {
-                    button_2.text = "O"
-                    button_2.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_2.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_2.text = "O"
+                        button_2.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_3 -> {
-                    button_3.text = "O"
-                    button_3.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_3.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_3.text = "O"
+                        button_3.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_4 -> {
-                    button_4.text = "O"
-                    button_4.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_4.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_4.text = "O"
+                        button_4.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_5 -> {
-                    button_5.text = "O"
-                    button_5.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_5.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_5.text = "O"
+                        button_5.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_6 -> {
-                    button_6.text = "O"
-                    button_6.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_6.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_6.text = "O"
+                        button_6.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_7 -> {
-                    button_7.text = "O"
-                    button_7.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_7.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_7.text = "O"
+                        button_7.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
                 R.id.Button_8 -> {
-                    button_8.text = "O"
-                    button_8.setTextColor(Color.parseColor("#EBFFFB"))
-                    gameState[gameStatus] = 1
-                    roundCounter++
+                    if (!(button_8.text.toString()).equals("")) {
+                        return
+                    } else {
+                        button_8.text = "O"
+                        button_8.setTextColor(Color.parseColor("#FF5858"))
+                        gameState[gameStatus] = 1
+                        roundCounter++
+                    }
                 }
             }
         }
@@ -344,8 +398,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         roundCounter = 0
         hasTurn = true
 
-        for (i in gameState.indices){
+        for (i in gameState.indices) {
             gameState[i] = 2
+            //buttons[i].text = ""
         }
         button_0.text =""
         button_1.text =""
