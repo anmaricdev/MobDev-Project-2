@@ -44,6 +44,7 @@ class PlayerNameActivity : AppCompatActivity() {
             val player1name: String = player1.text.toString()
             val player2name: String = player2.text.toString()
 
+            // variables that check if the editText fields are null or empty
             val isNullOrEmpty = player1name.isNullOrEmpty()
             val isNullOrEmpty2 = player2name.isNullOrEmpty()
 
@@ -63,5 +64,13 @@ class PlayerNameActivity : AppCompatActivity() {
                 //errorMessage.setVisibility(View.VISIBLE)
             }
         }
+    }
+    override fun onResume(){
+        super.onResume()
+        Log.v(TAG, "On resume...")
+    }
+    override fun onRestart() {
+        super.onRestart()
+        Log.v(TAG, "On restart...")
     }
 }

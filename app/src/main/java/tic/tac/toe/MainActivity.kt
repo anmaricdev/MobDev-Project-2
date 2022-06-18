@@ -412,4 +412,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button_7.text =""
         button_8.text =""
     }
+    override fun onResume(){
+        super.onResume()
+        Log.v(TAG, "On resume...")
+    }
+    override fun onRestart() {
+        super.onRestart()
+        Log.v(TAG, "On restart...")
+    }
 }

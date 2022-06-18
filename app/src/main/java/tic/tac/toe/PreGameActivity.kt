@@ -4,11 +4,15 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import kotlin.system.exitProcess
 
 class PreGameActivity : AppCompatActivity() {
+
+    private val TAG = "PRE_GAME"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pre_game)
@@ -45,5 +49,13 @@ class PreGameActivity : AppCompatActivity() {
         exitGameButtonClick.setOnClickListener {
             warning.show()
         }
+    }
+    override fun onResume(){
+        super.onResume()
+        Log.v(TAG, "On resume...")
+    }
+    override fun onRestart() {
+        super.onRestart()
+        Log.v(TAG, "On restart...")
     }
 }

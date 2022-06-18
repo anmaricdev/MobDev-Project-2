@@ -8,6 +8,8 @@ import android.os.Looper
 
 class SplashScreenActivity : AppCompatActivity() {
 
+    private val TAG = "SPLASH_SCREEN"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
