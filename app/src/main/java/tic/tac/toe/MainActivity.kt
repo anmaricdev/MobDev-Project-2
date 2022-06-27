@@ -114,13 +114,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         player2Name.text = player2
 
         //initialize the text view with player 1 having the first turn
-        turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!!"
+        turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!"
 
         val newGameButtonOnClick = findViewById<Button>(R.id.Button_NewGame)
         newGameButtonOnClick.setOnClickListener {
             p1counter = 0
             p2counter = 0
-            turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!!"
+            turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!"
             updatePlayerWinstreak()
             playAgain()
         }
@@ -335,7 +335,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         if (checkWinner()){
+            //
             if(hasTurn) {
+                // If player 1 wins
                 p1counter++
                 updatePlayerWinstreak()
                 val warning = AlertDialog.Builder(this@MainActivity)
@@ -345,7 +347,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 warning.setIcon(R.drawable.ic_winner_symbol)
                 warning.show()
                 playAgain()
+                hasTurn = false // player 2 starts next turn
             }else {
+                // If player 2 wins
                 p2counter++
                 updatePlayerWinstreak()
                 val warning = AlertDialog.Builder(this@MainActivity)
@@ -355,6 +359,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 warning.setIcon(R.drawable.ic_winner_symbol)
                 warning.show()
                 playAgain()
+                hasTurn = true // player 1 starts next turn
             }
         }else if(roundCounter == 9){
             val warning = AlertDialog.Builder(this@MainActivity)
@@ -364,15 +369,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             warning.setIcon(R.drawable.ic_draw_symbol)
             warning.show()
             playAgain()
+            hasTurn = true
         }else{
             hasTurn = !hasTurn
         }
 
         // changes the display depending on the state of the game (e.g. who is winning and if it's a draw)
         if (hasTurn){
-            turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!!"
+            turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!"
         } else {
-            turnDisplay.text = "It's " + player2Name.text.toString() + "'s turn!!"
+            turnDisplay.text = "It's " + player2Name.text.toString() + "'s turn!"
         }
     }
 
@@ -397,7 +403,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun playAgain(){
         roundCounter = 0
-        hasTurn = true
 
         for (i in gameState.indices) {
             gameState[i] = 0
