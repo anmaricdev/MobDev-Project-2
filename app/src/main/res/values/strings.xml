@@ -6,7 +6,7 @@
     <string name="home_button">&#127968; Home</string>
     <string name="finish_button">Finish</string>
     <string name="enter_names">Enter your name below</string>
-    <string name="winner">It\'s a TIE! Close game!</string>
+    <string name="turn_message"></string>
     <string name="player1">Enter name here...</string>
     <string name="player2">Enter name here...</string>
     <string name="p1WinStreak">0</string>

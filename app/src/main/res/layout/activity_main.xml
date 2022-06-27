@@ -60,12 +60,12 @@
         app:layout_constraintTop_toBottomOf="@+id/PlayerTwo" />
 
     <TextView
-        android:id="@+id/WinnerDisplay"
+        android:id="@+id/TurnDisplay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="@dimen/textSize_Winner"
         android:textAlignment="center"
-        android:text="@string/winner"
+        android:text="@string/turn_message"
         app:layout_constraintTop_toBottomOf="@+id/PlayerOneWinStreak"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -79,7 +79,7 @@
         android:textSize="@dimen/textSize_GameInput"
         android:textStyle="bold"
         android:backgroundTint="@color/purple_main"
-        app:layout_constraintTop_toBottomOf="@id/WinnerDisplay"
+        app:layout_constraintTop_toBottomOf="@id/TurnDisplay"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="7dp"

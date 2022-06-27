@@ -41,6 +41,7 @@ class PreGameActivity : AppCompatActivity() {
         startGameButtonClick.setOnClickListener {
             val intent = Intent(this@PreGameActivity, PlayerNameActivity::class.java)
             startActivity(intent)
+            finish()
         }
         // If the exit app button is pressed, the app sends a pop up that gives the user the option to
         // proceed to exit the app or, in case of a misinput, cancel the exit process and return to

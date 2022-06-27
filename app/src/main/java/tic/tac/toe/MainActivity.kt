@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var p1WinStreak: TextView
     private lateinit var p2WinStreak: TextView
-    private lateinit var winnerDisplay: TextView
+    private lateinit var turnDisplay: TextView
     private lateinit var player1Name: TextView
     private lateinit var player2Name: TextView
     private lateinit var buttonNG: Button
@@ -47,12 +47,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
    // private var buttons: Array<Button> = arrayOf()
 
     /* KEEPING TRACK OF THE GAME PROGRESS/STATE:
-    * If player one owns a field => player1 = 0
-    * If player one owns a field => player2 = 1
-    * If the box is empty and no one owns it yet => emptyField = 2
+    * If player one owns a field => player1 = 1
+    * If player one owns a field => player2 = 2
+    * If the box is empty and no one owns it yet => emptyField = 0
     * */
     // initialize all boxes as empty fields
-    var gameState = intArrayOf(2, 2, 2, 2, 2, 2, 2, 2, 2)
+    var gameState = intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0)
 
     // multidimensional array to determine the winning conditions
     // source: https://stackoverflow.com/questions/34145495/2d-array-in-kotlin
@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         // connecting to UI elements
         p1WinStreak = findViewById(R.id.PlayerOneWinStreak)
         p2WinStreak = findViewById(R.id.PlayerTwoWinStreak)
-        winnerDisplay = findViewById(R.id.WinnerDisplay)
+        turnDisplay = findViewById(R.id.TurnDisplay)
         player1Name = findViewById(R.id.PlayerOne)
         player2Name = findViewById(R.id.PlayerTwo)
         buttonNG = findViewById(R.id.Button_NewGame)
@@ -113,11 +113,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         player1Name.text = player1
         player2Name.text = player2
 
+        //initialize the text view with player 1 having the first turn
+        turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!!"
+
         val newGameButtonOnClick = findViewById<Button>(R.id.Button_NewGame)
         newGameButtonOnClick.setOnClickListener {
             p1counter = 0
             p2counter = 0
-            winnerDisplay.text = "It's a TIE! Close game!"
+            turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!!"
             updatePlayerWinstreak()
             playAgain()
         }
@@ -151,7 +154,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_0.text = "X"
                         button_0.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -161,7 +164,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_1.text = "X"
                         button_1.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -171,7 +174,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_2.text = "X"
                         button_2.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -181,7 +184,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_3.text = "X"
                         button_3.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -191,7 +194,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_4.text = "X"
                         button_4.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -201,7 +204,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_5.text = "X"
                         button_5.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -211,7 +214,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_6.text = "X"
                         button_6.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -221,7 +224,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_7.text = "X"
                         button_7.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -231,7 +234,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_8.text = "X"
                         button_8.setTextColor(Color.parseColor("#EBFFFB"))
-                        gameState[gameStatus] = 0
+                        gameState[gameStatus] = 1
                         roundCounter++
                     }
                 }
@@ -245,7 +248,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_0.text = "O"
                         button_0.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -255,7 +258,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_1.text = "O"
                         button_1.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -265,7 +268,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_2.text = "O"
                         button_2.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -275,7 +278,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_3.text = "O"
                         button_3.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -285,7 +288,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_4.text = "O"
                         button_4.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -295,7 +298,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_5.text = "O"
                         button_5.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -305,7 +308,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_6.text = "O"
                         button_6.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -315,7 +318,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_7.text = "O"
                         button_7.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -325,7 +328,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                     } else {
                         button_8.text = "O"
                         button_8.setTextColor(Color.parseColor("#FF5858"))
-                        gameState[gameStatus] = 1
+                        gameState[gameStatus] = 2
                         roundCounter++
                     }
                 }
@@ -366,12 +369,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         // changes the display depending on the state of the game (e.g. who is winning and if it's a draw)
-        if (p1counter > p2counter){
-            winnerDisplay.text = player1Name.text.toString() + " is winning!"
-        } else if (p2counter > p1counter){
-            winnerDisplay.text = player2Name.text.toString() + " is winning!"
+        if (hasTurn){
+            turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!!"
         } else {
-            winnerDisplay.text = "It's a TIE! Close game!"
+            turnDisplay.text = "It's " + player2Name.text.toString() + "'s turn!!"
         }
     }
 
@@ -383,7 +384,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         for(winningPosition: IntArray in winningConditions){
             if(gameState[winningPosition[0]] == gameState[winningPosition[1]] &&
                 gameState[winningPosition[1]] == gameState[winningPosition[2]] &&
-                gameState[winningPosition[0]] != 2){ isWinner = true
+                gameState[winningPosition[0]] != 0){ isWinner = true
             }
         }
         return isWinner
@@ -399,7 +400,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         hasTurn = true
 
         for (i in gameState.indices) {
-            gameState[i] = 2
+            gameState[i] = 0
             //buttons[i].text = ""
         }
         button_0.text =""
