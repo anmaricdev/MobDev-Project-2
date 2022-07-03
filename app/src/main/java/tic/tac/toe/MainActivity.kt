@@ -8,7 +8,15 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import kotlin.system.exitProcess
+
+var hasTurn = isCodeMaker
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -38,13 +46,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     // Counter that keeps track of the current round, maximum being 9 as there are only 9 fields in the game
     var roundCounter = 0
 
-    // makes sure that players switch their turns after their turn ends (after setting your X/O)
+    // makes sure that players switch their turns after setting their marks
     // Player1 = true; Player2 = false
-    var hasTurn = true
-
-    // array that consists of all the possible positions to place an X or O (buttons of the UI)
-
-   // private var buttons: Array<Button> = arrayOf()
+    //var hasTurn = true
 
     /* KEEPING TRACK OF THE GAME PROGRESS/STATE:
     * If player one owns a field => player1 = 1
@@ -69,6 +73,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         // hides the top bar that says "Three in a row"
         // supportActionBar?.hide()
+
         // connecting to UI elements
         p1WinStreak = findViewById(R.id.PlayerOneWinStreak)
         p2WinStreak = findViewById(R.id.PlayerTwoWinStreak)
@@ -86,14 +91,39 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button_7 = findViewById(R.id.Button_7)
         button_8 = findViewById(R.id.Button_8)
 
-        // initializing the button array
-        /*for (i in buttons.indices){
-            val buttonID: String = "Button_" + i
-            val resourceID: Int = resources.getIdentifier(buttonID, "id", packageName)
-            buttons[i] = findViewById(resourceID)
-            buttons[i].setOnClickListener(this)
-            Log.v(TAG, "Button: " + buttons[i])
-        }*/
+        //Initialize Database
+        FirebaseDatabase.getInstance().reference.child("data").child(code).addChildEventListener(object : ChildEventListener{
+            // add new data to the database
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                var data = snapshot.value
+                if(hasTurn == true){
+                    hasTurn == false
+                    moveOnline(data.toString(), hasTurn)
+                } else {
+                    hasTurn = true
+                    moveOnline(data.toString(), hasTurn)
+                }
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+                playAgain()
+                hasTurn = isCodeMaker
+                if(isCodeMaker){
+                    FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
+                }
+                Toast.makeText(this@MainActivity, "Game has been reset", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
 
         // checks if button is clicked
         button_0.setOnClickListener(this)
@@ -127,6 +157,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val homeButtonOnClick = findViewById<Button>(R.id.Button_Home)
         homeButtonOnClick.setOnClickListener {
             val intent = Intent(this@MainActivity, PreGameActivity::class.java)
+            removeCode()
             startActivity(intent)
             finish() // prevents the app returning to this screen if e.g. back button is pressed after switching to main app
         }
@@ -156,6 +187,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_0.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(0)
                     }
                 }
                 R.id.Button_1 -> {
@@ -166,6 +198,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_1.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(1)
                     }
                 }
                 R.id.Button_2 -> {
@@ -176,6 +209,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_2.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(2)
                     }
                 }
                 R.id.Button_3 -> {
@@ -186,6 +220,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_3.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(3)
                     }
                 }
                 R.id.Button_4 -> {
@@ -196,6 +231,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_4.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(4)
                     }
                 }
                 R.id.Button_5 -> {
@@ -206,6 +242,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_5.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(5)
                     }
                 }
                 R.id.Button_6 -> {
@@ -216,6 +253,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_6.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(6)
                     }
                 }
                 R.id.Button_7 -> {
@@ -226,6 +264,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_7.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(7)
                     }
                 }
                 R.id.Button_8 -> {
@@ -236,6 +275,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_8.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
+                        //updateDatabase(8)
                     }
                 }
             }
@@ -250,6 +290,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_0.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(9)
                     }
                 }
                 R.id.Button_1 -> {
@@ -260,6 +301,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_1.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(10)
                     }
                 }
                 R.id.Button_2 -> {
@@ -270,6 +312,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_2.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(11)
                     }
                 }
                 R.id.Button_3 -> {
@@ -280,6 +323,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_3.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(12)
                     }
                 }
                 R.id.Button_4 -> {
@@ -290,6 +334,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_4.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(13)
                     }
                 }
                 R.id.Button_5 -> {
@@ -300,6 +345,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_5.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(14)
                     }
                 }
                 R.id.Button_6 -> {
@@ -310,6 +356,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_6.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(15)
                     }
                 }
                 R.id.Button_7 -> {
@@ -320,6 +367,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_7.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(16)
                     }
                 }
                 R.id.Button_8 -> {
@@ -330,12 +378,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_8.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
+                        //updateDatabase(17)
                     }
                 }
             }
         }
         if (checkWinner()){
-            //
             if(hasTurn) {
                 // If player 1 wins
                 p1counter++
@@ -348,6 +396,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 warning.show()
                 playAgain()
                 hasTurn = false // player 2 starts next turn
+                //hasTurn = isCodeMaker
+                if(isCodeMaker){
+                    FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
+                }
             }else {
                 // If player 2 wins
                 p2counter++
@@ -360,7 +412,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 warning.show()
                 playAgain()
                 hasTurn = true // player 1 starts next turn
+                //hasTurn = isCodeMaker
+                if(isCodeMaker){
+                    FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
+                }
             }
+            //If everyone places their mark and no win condition is met
         }else if(roundCounter == 9){
             val warning = AlertDialog.Builder(this@MainActivity)
             warning.setTitle("DRAW!")
@@ -370,11 +427,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             warning.show()
             playAgain()
             hasTurn = true
-        }else{
+            //hasTurn = isCodeMaker
+            if(isCodeMaker){
+                FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
+            }
+        }else{ //switch turns
             hasTurn = !hasTurn
         }
 
-        // changes the display depending on the state of the game (e.g. who is winning and if it's a draw)
+        // changes the display depending on which player has the current turn
         if (hasTurn){
             turnDisplay.text = "It's " + player1Name.text.toString() + "'s turn!"
         } else {
@@ -396,11 +457,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         return isWinner
         }
 
+    // adds up the rounds won counter to their assigned textView
     private fun updatePlayerWinstreak(){
         p1WinStreak.text = p1counter.toString()
         p2WinStreak.text = p2counter.toString()
     }
 
+    //resets the game (reset roundCounter to zero, bring all the buttons back to neutral and clear the marks)
     private fun playAgain(){
         roundCounter = 0
 
@@ -418,6 +481,49 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button_7.text =""
         button_8.text =""
     }
+
+    // send data online to the database
+    fun moveOnline(data : String, hasTurn : Boolean){
+        if(hasTurn){
+            var buttonSelected : Button?
+            buttonSelected = when(data.toInt()){
+                1->button_0
+                2->button_1
+                3->button_2
+                4->button_3
+                5->button_4
+                6->button_5
+                7->button_6
+                8->button_6
+                9->button_8
+                else -> {
+                    button_0
+                }
+            }
+            buttonSelected.text = "0"
+        }
+    }
+
+    //remove the code from the DB
+    fun removeCode(){
+        if(isCodeMaker){
+            FirebaseDatabase.getInstance().reference.child("codes").child(keyValue).removeValue()
+        }
+    }
+    // delete data from database if button for back is pressed
+    override fun onBackPressed() {
+        removeCode()
+        if(isCodeMaker){
+            FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
+        }
+        exitProcess(0)
+    }
+
+    // Update the cellId in the Database
+    fun updateDatabase(cellId : Int){
+        FirebaseDatabase.getInstance().reference.child("data").child(code).push().setValue(cellId)
+    }
+
     override fun onResume(){
         super.onResume()
         Log.v(TAG, "On resume...")

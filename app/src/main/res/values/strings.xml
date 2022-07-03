@@ -15,6 +15,9 @@
     <string name="player1_heading">Player 1 name:</string>
     <string name="player2_heading">Player 2 name:</string>
     <string name="error_message_names">Enter names please!</string>
-    <string name="bluetooth_heading">Find a second player...</string>
-    <string name="FP_button">Show available players</string>
+    <string name="heading_createLobby">Finding a second player...</string>
+    <string name="code_heading">Enter code to create or join a lobby!</string>
+    <string name="create_button">Host game</string>
+    <string name="join_button">Join game</string>
+    <string name="enter_game_code">Enter code here...</string>
 </resources>

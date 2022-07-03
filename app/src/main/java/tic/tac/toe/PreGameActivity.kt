@@ -1,6 +1,5 @@
 package tic.tac.toe
 
-import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -28,7 +27,6 @@ class PreGameActivity : AppCompatActivity() {
             warning.setIcon(R.drawable.ic_warning_symbol)
             warning.setPositiveButton(android.R.string.yes){warning, which ->
                 //destroys the app completely after pressing yes
-                // https://stackoverflow.com/questions/6330200/how-to-quit-android-application-programmatically
                 finishAndRemoveTask()
                 exitProcess(0)
             }
@@ -36,10 +34,10 @@ class PreGameActivity : AppCompatActivity() {
             }
 
 
-        // continues/switches to the next activity (PlayerNameActivity)
+        // continues/switches to the next activity (CreateLobbyActivity)
         val startGameButtonClick = findViewById<Button>(R.id.startGameButton)
         startGameButtonClick.setOnClickListener {
-            val intent = Intent(this@PreGameActivity, PlayerNameActivity::class.java)
+            val intent = Intent(this@PreGameActivity, CreateLobbyActivity::class.java)
             startActivity(intent)
             finish()
         }

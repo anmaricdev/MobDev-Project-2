@@ -4,13 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-import androidx.core.view.isInvisible
-import androidx.core.view.isVisible
 
 class PlayerNameActivity : AppCompatActivity() {
 
@@ -18,7 +14,6 @@ class PlayerNameActivity : AppCompatActivity() {
 
     private lateinit var player1: EditText
     private lateinit var player2: EditText
-    private lateinit var errorMessage: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +25,6 @@ class PlayerNameActivity : AppCompatActivity() {
         // connecting to UI elements
         player1 = findViewById(R.id.editPlayerOneName)
         player2 = findViewById(R.id.editPlayerTwoName)
-        errorMessage = findViewById(R.id.error_message)
 
         // creating a warning pop up in case names are missing
         val warning = AlertDialog.Builder(this@PlayerNameActivity)
