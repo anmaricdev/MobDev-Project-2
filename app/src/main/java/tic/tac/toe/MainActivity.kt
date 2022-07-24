@@ -187,7 +187,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_0.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(0)
+                        updateDatabase(0)
                     }
                 }
                 R.id.Button_1 -> {
@@ -198,7 +198,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_1.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(1)
+                        updateDatabase(1)
                     }
                 }
                 R.id.Button_2 -> {
@@ -209,7 +209,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_2.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(2)
+                        updateDatabase(2)
                     }
                 }
                 R.id.Button_3 -> {
@@ -220,7 +220,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_3.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(3)
+                        updateDatabase(3)
                     }
                 }
                 R.id.Button_4 -> {
@@ -231,7 +231,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_4.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(4)
+                        updateDatabase(4)
                     }
                 }
                 R.id.Button_5 -> {
@@ -242,7 +242,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_5.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(5)
+                        updateDatabase(5)
                     }
                 }
                 R.id.Button_6 -> {
@@ -253,7 +253,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_6.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(6)
+                        updateDatabase(6)
                     }
                 }
                 R.id.Button_7 -> {
@@ -264,7 +264,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_7.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(7)
+                        updateDatabase(7)
                     }
                 }
                 R.id.Button_8 -> {
@@ -275,7 +275,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_8.setTextColor(Color.parseColor("#EBFFFB"))
                         gameState[gameStatus] = 1
                         roundCounter++
-                        //updateDatabase(8)
+                        updateDatabase(8)
                     }
                 }
             }
@@ -290,7 +290,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_0.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(9)
+                        updateDatabase(9)
                     }
                 }
                 R.id.Button_1 -> {
@@ -301,7 +301,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_1.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(10)
+                        updateDatabase(10)
                     }
                 }
                 R.id.Button_2 -> {
@@ -312,7 +312,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_2.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(11)
+                        updateDatabase(11)
                     }
                 }
                 R.id.Button_3 -> {
@@ -323,7 +323,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_3.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(12)
+                        updateDatabase(12)
                     }
                 }
                 R.id.Button_4 -> {
@@ -334,7 +334,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_4.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(13)
+                        updateDatabase(13)
                     }
                 }
                 R.id.Button_5 -> {
@@ -345,7 +345,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_5.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(14)
+                        updateDatabase(14)
                     }
                 }
                 R.id.Button_6 -> {
@@ -356,7 +356,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_6.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(15)
+                        updateDatabase(15)
                     }
                 }
                 R.id.Button_7 -> {
@@ -367,7 +367,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_7.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(16)
+                        updateDatabase(16)
                     }
                 }
                 R.id.Button_8 -> {
@@ -378,7 +378,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                         button_8.setTextColor(Color.parseColor("#FF5858"))
                         gameState[gameStatus] = 2
                         roundCounter++
-                        //updateDatabase(17)
+                        updateDatabase(17)
                     }
                 }
             }
@@ -396,7 +396,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 warning.show()
                 playAgain()
                 hasTurn = false // player 2 starts next turn
-                //hasTurn = isCodeMaker
+                hasTurn = isCodeMaker
                 if(isCodeMaker){
                     FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
                 }
@@ -412,7 +412,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 warning.show()
                 playAgain()
                 hasTurn = true // player 1 starts next turn
-                //hasTurn = isCodeMaker
+                hasTurn = isCodeMaker
                 if(isCodeMaker){
                     FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
                 }
@@ -427,7 +427,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             warning.show()
             playAgain()
             hasTurn = true
-            //hasTurn = isCodeMaker
+            hasTurn = isCodeMaker
             if(isCodeMaker){
                 FirebaseDatabase.getInstance().reference.child("data").child(code).removeValue()
             }
